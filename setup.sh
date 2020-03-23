@@ -84,13 +84,15 @@ install_msg="Installing basic packages..."
 print_green "${install_msg}"
 while read -r p ; do print_green "Installing ${p}..." && sleep 2 && sudo apt install -y $p ; done < <(cat << "EOF"
     build-essential autoconf automake cmake cmake-data pkg-config clang
-    python3 ipython3 python3-pip
+    python3 ipython3 python3-pip neovim
     tmux most neofetch lzma zip unzip tree
     snapd gnome-tweaks mesa-utils fonts-firacode
     gnome-shell-extension-system-monitor gnome-shell-extension-appindicator
-    neovim
+    docker docker-compose
 EOF
 )
+
+sudo usermod -a -G docker $USER
 
 fix_cedilla
 install_exa
