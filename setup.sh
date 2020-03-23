@@ -87,6 +87,7 @@ while read -r p ; do print_green "Installing ${p}..." && sleep 2 && sudo apt ins
     python3 ipython3 python3-pip
     tmux most neofetch lzma zip unzip tree
     snapd gnome-tweaks mesa-utils fonts-firacode
+    gnome-shell-extension-system-monitor gnome-shell-extension-appindicator
     neovim
 EOF
 )
