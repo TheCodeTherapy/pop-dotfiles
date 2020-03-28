@@ -48,6 +48,10 @@ fix_cedilla () {
         < /usr/share/X11/locale/en_US.UTF-8/Compose \
         > $DOTDIR/x/XCompose
     home_link "x/XCompose" ".XCompose"
+    sudo cp /usr/lib/x86_64-linux-gnu/gtk-3.0/3.0.0/immodules.cache /usr/lib/x86_64-linux-gnu/gtk-3.0/3.0.0/immodules.cache.bckp
+    sudo sed -i 's,"az:ca:co:fr:gv:oc:pt:sq:tr:wa","az:ca:co:fr:gv:oc:pt:sq:tr:wa:en",g' /usr/lib/x86_64-linux-gnu/gtk-3.0/3.0.0/immodules.cache
+    sudo cp /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules.cache /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules.cache.bckp
+    sudo sed -i 's,"az:ca:co:fr:gv:oc:pt:sq:tr:wa","az:ca:co:fr:gv:oc:pt:sq:tr:wa:en",g' /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules.cache
 }
 
 install_exa () {
@@ -102,6 +106,7 @@ install_nvm
 sudo snap install code --classic
 sudo snap install skype --classic
 sudo snap install slack --classic
+sudo snap install mailspring
 snap refresh
 
 home_link "bash/bashrc.sh" ".bashrc"
