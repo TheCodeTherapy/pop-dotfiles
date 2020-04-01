@@ -62,6 +62,7 @@ fix_cedilla () {
     sudo sed -i 's,"az:ca:co:fr:gv:oc:pt:sq:tr:wa","az:ca:co:fr:gv:oc:pt:sq:tr:wa:en",g' /usr/lib/x86_64-linux-gnu/gtk-3.0/3.0.0/immodules.cache
     sudo cp /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules.cache /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules.cache.bckp
     sudo sed -i 's,"az:ca:co:fr:gv:oc:pt:sq:tr:wa","az:ca:co:fr:gv:oc:pt:sq:tr:wa:en",g' /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules.cache
+    sudo cp $DOTDIR/etc/environment /etc/environment
 }
 
 install_exa () {
@@ -131,7 +132,7 @@ update_system
 install_msg="Installing basic packages..."
 print_cyan "${install_msg}"
 while read -r p ; do print_cyan "Installing ${p}..." && sleep 2 && sudo apt install -y $p ; done < <(cat << "EOF"
-    build-essential autoconf automake cmake cmake-data pkg-config clang
+    build-essential autoconf automake cmake cmake-data pkg-config clang mlocate
     python3 ipython3 python3-pip neovim
     tmux most neofetch lzma zip unzip tree
     snapd gnome-tweaks mesa-utils fonts-firacode
