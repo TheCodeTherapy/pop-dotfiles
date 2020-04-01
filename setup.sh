@@ -22,9 +22,19 @@ print_green () {
     echo -e "\n${COLORS[GREEN]}${1}${COLORS[OFF]}\n"
 }
 
+print_cyan () {
+    echo -e "\n${COLORS[CYAN]}${1}${COLORS[OFF]}\n"
+}
+
+wait_key () {
+    echo -e "\n${COLORS[YELLOW]}"
+    read -n 1 -s -r -p "${1}"
+    echo -e "${COLORS[OFF]}\n"
+}
+
 update_system () {
     msg="Updating the system..."
-    print_green "${msg}"
+    print_cyan "${msg}"
     sudo apt update && sudo apt upgrade
 }
 
@@ -42,7 +52,7 @@ home_link_cfg () {
 
 fix_cedilla () {
     msg="Fixing cedilla character on XCompose..."
-    print_green "${msg}"
+    print_cyan "${msg}"
     mkdir -p $DOTDIR/x
     sed -e 's,\xc4\x86,\xc3\x87,g' -e 's,\xc4\x87,\xc3\xa7,g' \
         < /usr/share/X11/locale/en_US.UTF-8/Compose \
@@ -57,10 +67,10 @@ fix_cedilla () {
 install_exa () {
     if [[ -f ${BINDIR}/exa ]]; then
         msg="Exa already installed."
-        print_green "${msg}"
+        print_cyan "${msg}"
     else
         msg="# Downloading Exa (please wait)..."
-        print_green "${msg}"
+        print_cyan "${msg}"
         cd ${BINDIR} \
             && wget https://github.com/ogham/exa/releases/download/v0.9.0/exa-linux-x86_64-0.9.0.zip \
             && unzip exa-linux-x86_64-0.9.0.zip \
@@ -72,21 +82,55 @@ install_exa () {
 
 install_ytdl () {
     msg="Installing / Upgrading youtube-dl..."
-    print_green "${msg}"
+    print_cyan "${msg}"
     sudo -H pip3 install --upgrade youtube-dl
 }
 
 install_nvm () {
     msg="Installing nvm..."
-    print_green "${msg}"
+    print_cyan "${msg}"
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+}
+
+install_yarn_package () {
+    if $(yarn --version > /dev/null 2>&1); then
+        msg="Yarn already installed."
+        print_green "${msg}"
+    else
+        msg="Installing Yarn package..."
+        print_cyan "${msg}"
+        sudo apt update && sudo apt install yarn
+    fi
+}
+
+install_yarn () {
+    msg="Installing Yarn..."
+    print_cyan "${msg}"
+    if $(APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key list | grep "Yarn Packaging" > /dev/null 2>&1); then
+        msg="Yarn GPG key already added to system."
+        print_green "${msg}"
+    else
+        msg="Adding Yarn GPG key to system..."
+        print_cyan "${msg}"
+        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    fi
+    if [[ -f /etc/apt/sources.list.d/yarn.list ]]; then
+        msg="Yarn sources list already added to system."
+        print_green "${msg}"
+        install_yarn_package
+    else
+        msg="Adding yarn.list to sources.list.d..."
+        print_cyan "${msg}"
+        echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+        install_yarn_package
+    fi
 }
 
 update_system
 
 install_msg="Installing basic packages..."
-print_green "${install_msg}"
-while read -r p ; do print_green "Installing ${p}..." && sleep 2 && sudo apt install -y $p ; done < <(cat << "EOF"
+print_cyan "${install_msg}"
+while read -r p ; do print_cyan "Installing ${p}..." && sleep 2 && sudo apt install -y $p ; done < <(cat << "EOF"
     build-essential autoconf automake cmake cmake-data pkg-config clang
     python3 ipython3 python3-pip neovim
     tmux most neofetch lzma zip unzip tree
@@ -102,7 +146,9 @@ fix_cedilla
 install_exa
 install_ytdl
 install_nvm
+install_yarn
 
+wait_key "Press any key to perform snap installs and updates..."
 sudo snap install code --classic
 sudo snap install skype --classic
 sudo snap install slack --classic
