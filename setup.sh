@@ -133,7 +133,8 @@ install_msg="Installing basic packages..."
 print_cyan "${install_msg}"
 while read -r p ; do print_cyan "Installing ${p}..." && sleep 2 && sudo apt install -y $p ; done < <(cat << "EOF"
     build-essential autoconf automake cmake cmake-data pkg-config clang mlocate
-    python3 ipython3 python3-pip neovim
+    libsdl2-dev libsdl2-ttf-dev libfontconfig-dev qt5-default
+    python3 ipython3 python3-pip python-is-python3 neovim awscli
     tmux most neofetch lzma zip unzip tree
     snapd gnome-tweaks mesa-utils fonts-firacode imagemagick ffmpeg
     gnome-shell-extension-system-monitor gnome-shell-extension-appindicator
@@ -153,7 +154,7 @@ wait_key "Press any key to perform snap installs and updates..."
 sudo snap install code --classic
 sudo snap install skype --classic
 sudo snap install slack --classic
-sudo snap install mailspring
+
 snap refresh
 
 home_link "bash/bashrc.sh" ".bashrc"
