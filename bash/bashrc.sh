@@ -121,7 +121,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PATH=$PATH:${DOTDIR}/bin:${DOTDIR}/utils/glslangValidator/bin
+PATH=$PATH:${DOTDIR}/bin:${DOTDIR}/utils/glslangValidator/bin:${ME}/.local/bin
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
