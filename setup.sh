@@ -173,6 +173,7 @@ home_link "bash/bashrc.sh" ".bashrc"
 home_link "bash/inputrc.sh" ".inputrc"
 home_link "tmux/tmux.conf" ".tmux.conf"
 home_link "tmux/tmux.conf.local" ".tmux.conf.local"
+home_link_cfg "nvim"
 
 cat $DOTDIR/x/gterminal.conf | dconf load /org/gnome/terminal/
 
