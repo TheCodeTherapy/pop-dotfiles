@@ -149,7 +149,7 @@ while read -r p ; do print_cyan "Installing ${p}..." && sleep 2 && sudo apt inst
     tmux most neofetch lzma zip unzip tree
     snapd gnome-tweaks mesa-utils fonts-firacode imagemagick ffmpeg
     gnome-shell-extension-system-monitor gnome-shell-extension-appindicator
-    docker docker-compose
+    docker docker-compose zsh zsh-doc
 EOF
 )
 
