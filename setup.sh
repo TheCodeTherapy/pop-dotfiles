@@ -174,6 +174,8 @@ home_link "bash/inputrc.sh" ".inputrc"
 home_link "tmux/tmux.conf" ".tmux.conf"
 home_link "tmux/tmux.conf.local" ".tmux.conf.local"
 
+cat $DOTDIR/x/gterminal.conf | dconf load /org/gnome/terminal/
+
 # wget -qO- https://deb.opera.com/archive.key | sudo apt-key add -
 # sudo add-apt-repository "deb [arch=i386,amd64] https://deb.opera.com/opera-stable/ stable non-free"
 # sudo apt update && sudo apt install opera-stable
