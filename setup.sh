@@ -150,6 +150,7 @@ while read -r p ; do print_cyan "Installing ${p}..." && sleep 2 && sudo apt inst
     snapd gnome-tweaks mesa-utils fonts-firacode imagemagick ffmpeg
     gnome-shell-extension-system-monitor gnome-shell-extension-appindicator
     docker docker-compose zsh zsh-doc network-manager-openvpn
+    dialog xmlstarlet
 EOF
 )
 
