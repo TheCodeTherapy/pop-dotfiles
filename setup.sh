@@ -90,7 +90,7 @@ install_ytdl () {
 install_nvm () {
     msg="Installing nvm..."
     print_cyan "${msg}"
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 }
 
 install_yarn_package () {
@@ -149,7 +149,7 @@ while read -r p ; do print_cyan "Installing ${p}..." && sleep 2 && sudo apt inst
     tmux most neofetch lzma zip unzip tree
     snapd gnome-tweaks mesa-utils fonts-firacode imagemagick ffmpeg
     gnome-shell-extension-system-monitor gnome-shell-extension-appindicator
-    docker docker-compose zsh zsh-doc
+    docker docker-compose zsh zsh-doc network-manager-openvpn
 EOF
 )
 
@@ -173,7 +173,7 @@ home_link "bash/bashrc.sh" ".bashrc"
 home_link "bash/inputrc.sh" ".inputrc"
 home_link "tmux/tmux.conf" ".tmux.conf"
 home_link "tmux/tmux.conf.local" ".tmux.conf.local"
-home_link_cfg "nvim"
+# home_link_cfg "nvim"
 
 cat $DOTDIR/x/gterminal.conf | dconf load /org/gnome/terminal/
 
