@@ -146,8 +146,8 @@ while read -r p ; do print_cyan "Installing ${p}..." && sleep 2 && sudo apt inst
     build-essential autoconf automake cmake cmake-data pkg-config clang mlocate
     libsdl2-dev libsdl2-ttf-dev libfontconfig-dev qt5-default
     python3 ipython3 python3-pip python-is-python3 neovim
-    tmux most neofetch lzma zip unzip tree
-    snapd gnome-tweaks mesa-utils fonts-firacode imagemagick ffmpeg
+    snapd gnome-tweaks mesa-utils fonts-firacode imagemagick ffmpeg vlc
+    tmux most neofetch lzma zip unzip tree obs-studio obs-plugins
     gnome-shell-extension-system-monitor gnome-shell-extension-appindicator
     docker docker-compose zsh zsh-doc network-manager-openvpn
     dialog xmlstarlet
@@ -163,12 +163,11 @@ install_nvm
 install_yarn
 install_awscli
 
-wait_key "Press any key to perform snap installs and updates..."
-sudo snap install code --classic
-sudo snap install skype --classic
-sudo snap install slack --classic
-
-snap refresh
+# wait_key "Press any key to perform snap installs and updates..."
+# sudo snap install code --classic
+# sudo snap install skype --classic
+# sudo snap install slack --classic
+# snap refresh
 
 home_link "bash/bashrc.sh" ".bashrc"
 home_link "bash/inputrc.sh" ".inputrc"
