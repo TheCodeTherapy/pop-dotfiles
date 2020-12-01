@@ -143,12 +143,12 @@ update_system
 install_msg="Installing basic packages..."
 print_cyan "${install_msg}"
 while read -r p ; do print_cyan "Installing ${p}..." && sleep 2 && sudo apt install -y $p ; done < <(cat << "EOF"
-    build-essential autoconf automake cmake cmake-data pkg-config clang mlocate
+    build-essential autoconf automake cmake cmake-data pkg-config clang
+    mlocate python3 ipython3 python3-pip python-is-python3 neovim
     libsdl2-dev libsdl2-ttf-dev libfontconfig-dev qt5-default
-    python3 ipython3 python3-pip python-is-python3 neovim
-    snapd gnome-tweaks mesa-utils fonts-firacode imagemagick ffmpeg vlc
-    tmux most neofetch lzma zip unzip tree obs-studio obs-plugins
+    gnome-tweaks mesa-utils fonts-firacode imagemagick ffmpeg vlc
     gnome-shell-extension-system-monitor gnome-shell-extension-appindicator
+    tmux most neofetch lzma zip unzip tree obs-studio obs-plugins
     docker docker-compose zsh zsh-doc network-manager-openvpn
     dialog xmlstarlet
 EOF

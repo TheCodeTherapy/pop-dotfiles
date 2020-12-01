@@ -1,15 +1,12 @@
-" Set paths for python versions ==============================================
+" Set paths for python versions =======================================
 let g:python_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/usr/bin/python3'
-"=============================================================================
+"======================================================================
 
 " Defining tab thingie ================================================
 filetype plugin indent on
-" show existing tab with 2 spaces width ===============================
 set tabstop=2
-" when indenting with '>', use 2 spaces width =========================
 set shiftwidth=2
-" on pressing tab, insert 4 spaces ====================================
 set expandtab
 " =====================================================================
 
